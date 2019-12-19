@@ -84,7 +84,7 @@ $(patsubst %.dats, BUILD/%_dats.o, $(SRCDATS))
 INCLUDE:=
 INCLUDE+=-I"."
 INCLUDE+=-I"./BUILD/xats"
-LIBRARY:=-L$(XQ) -lxatsopt
+LIBRARY:=-L$(XQ)/lib -lxatsopt
 
 ######
 #
@@ -160,6 +160,8 @@ clean:: ; $(RMF) xjsonize_dats.c
 
 cleanall:: clean
 cleanall:: ; $(RMF) xjsonize
+cleanall:: ; (cd $(XQ) && make cleanall)
+cleanall:: ; $(RMF) $(XQ)/../../lib/libxatsopt.a
 
 ######
 
